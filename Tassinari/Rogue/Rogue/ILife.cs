@@ -1,7 +1,7 @@
 namespace rogue
 {
     /// <summary>
-    /// An interface modeling a life for a Creature>
+    /// An interface modeling a life for a Creature.
     /// </summary>
     public interface ILife
     {
