@@ -5,9 +5,9 @@ using System.Text;
 namespace Pezzi.potion
 {
     /// <summary>
-    /// Class representing a game <see cref="Potion"/>.
+    /// Class representing a game <see cref="IPotion"/>.
     /// </summary>
-    public class PotionImpl : Potion
+    public class PotionImpl : IPotion
     {
         private readonly PotionType potion;
         private readonly int hpValue;

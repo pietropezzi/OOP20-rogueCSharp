@@ -5,7 +5,7 @@ using System.Text;
 namespace Pezzi.scroll
 {
     /// <summary>
-    /// Class that represents a <see cref="Scroll"/> type.
+    /// Class that represents a <see cref="IScroll"/> type.
     /// </summary>
     public class ScrollType
     {

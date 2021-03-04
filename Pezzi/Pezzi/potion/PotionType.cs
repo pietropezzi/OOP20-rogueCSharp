@@ -5,7 +5,7 @@ using System.Text;
 namespace Pezzi.potion
 {
     /// <summary>
-    /// Class that represents a <see cref="Potion"/> type.
+    /// Class that represents a <see cref="IPotion"/> type.
     /// </summary>
     public class PotionType
     {

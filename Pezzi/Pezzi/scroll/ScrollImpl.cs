@@ -5,9 +5,9 @@ using System.Text;
 namespace Pezzi.scroll
 {
     /// <summary>
-    /// Class representing a game <see cref="Scroll"/>.
+    /// Class representing a game <see cref="IScroll"/>.
     /// </summary>
-    public class ScrollImpl : Scroll
+    public class ScrollImpl : IScroll
     {
         private readonly ScrollType scroll;
         private readonly int scrollValue;

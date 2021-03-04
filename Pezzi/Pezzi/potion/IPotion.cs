@@ -17,7 +17,7 @@ namespace Pezzi.potion
     /// <summary>
     /// An interface modeling a game's Potion.
     /// </summary>
-    public interface Potion : Item
+    public interface IPotion : IItem
     {
         /// <summary>
         /// Gets the potion's helth points.

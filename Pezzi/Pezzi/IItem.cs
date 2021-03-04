@@ -7,7 +7,7 @@ namespace Pezzi
     /// <summary>
     /// Interface that represents a games' Item.
     /// </summary>
-    public interface Item
+    public interface IItem
     {
 
         /// <summary>

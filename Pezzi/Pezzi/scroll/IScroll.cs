@@ -16,7 +16,7 @@ namespace Pezzi.scroll
     /// <summary>
     /// An interface modeling a game's Scroll.
     /// </summary>
-    public interface Scroll : Item
+    public interface IScroll : IItem
     {
         /// <summary>
         /// Remove the scroll's effect

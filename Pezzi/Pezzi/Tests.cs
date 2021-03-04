@@ -11,7 +11,7 @@ namespace Pezzi
         public void TestPotionUse()
         {
             Player player = new Player();
-            Potion potion = new PotionImpl(PotionType.POTION_I);
+            IPotion potion = new PotionImpl(PotionType.POTION_I);
             //use at max
             Assert.IsFalse(potion.Use(player));
             
@@ -32,7 +32,7 @@ namespace Pezzi
         public void TestCorruptPotionUse()
         {
             Player player = new Player();
-            Potion potion = new PotionImpl(PotionType.CORRUPT_POTION_I);
+            IPotion potion = new PotionImpl(PotionType.CORRUPT_POTION_I);
 
             //use normal
             int before = player.GetHealth();
@@ -50,7 +50,7 @@ namespace Pezzi
         public void TestScrollUseAndRemove()
         {
             Player player = new Player();
-            Scroll scroll = new ScrollImpl(ScrollType.SCROLL_III);
+            IScroll scroll = new ScrollImpl(ScrollType.SCROLL_III);
 
             //use and remove normal
             int before = player.GetStrength();
@@ -65,7 +65,7 @@ namespace Pezzi
         public void TestCorruptScrollUse()
         {
             Player player = new Player();
-            Scroll scroll = new ScrollImpl(ScrollType.CORRUPT_SCROLL_II);
+            IScroll scroll = new ScrollImpl(ScrollType.CORRUPT_SCROLL_II);
 
             //use below zero.
             Assert.IsTrue(scroll.Use(player));
