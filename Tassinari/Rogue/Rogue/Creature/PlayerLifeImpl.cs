@@ -4,9 +4,11 @@ namespace Rogue.Creature
 {
     public class PlayerLifeImpl : AbstractLife, IPlayerLife
     {
-
-        public Action<int> PlayerLifeChanged;
-
+        /// <summary>
+        /// Event handler for life changes.
+        /// </summary>
+        public Action<PlayerAttribute, int> PlayerLifeChanged;
+        
         private int _maxHealthPoints;
         private int _strength;
         private int _food;
@@ -14,13 +16,16 @@ namespace Rogue.Creature
         private int _coins;
         
         // add strategies ...
+
+        private void invokeAction(PlayerAttribute attribute, int value) =>
+            this.PlayerLifeChanged?.Invoke(attribute, value);
         public int MaxHealthPoints
         {
             get => this._maxHealthPoints;
             private set
             {
                 this._maxHealthPoints = value;
-                this.PlayerLifeChanged?.Invoke(this._maxHealthPoints);
+                this.invokeAction(PlayerAttribute.MaxHp, this._maxHealthPoints);
             }
         }
 
@@ -30,7 +35,7 @@ namespace Rogue.Creature
             private set
             {
                 this._strength = value;
-                this.PlayerLifeChanged?.Invoke(this._strength);
+                this.invokeAction(PlayerAttribute.Strength, this._strength);
             }
         }
         public int Food 
@@ -39,7 +44,7 @@ namespace Rogue.Creature
             private set
             {
                 this._food = value;
-                this.PlayerLifeChanged?.Invoke(this._food);
+                this.invokeAction(PlayerAttribute.Food, this._food);
             }
         }
 
@@ -49,7 +54,7 @@ namespace Rogue.Creature
             private set
             {
                 this._level = value;
-                this.PlayerLifeChanged?.Invoke(this._level);
+                this.invokeAction(PlayerAttribute.Level, this._level);
             }
         }
 
@@ -59,7 +64,7 @@ namespace Rogue.Creature
             private set
             {
                 this._coins = value;
-                this.PlayerLifeChanged?.Invoke(this._coins);
+                this.invokeAction(PlayerAttribute.Coins, this._coins);
             }
         }
 
@@ -78,19 +83,19 @@ namespace Rogue.Creature
         public override void Hurt(int damage)
         {
             base.Hurt(damage);
-            this.PlayerLifeChanged?.Invoke(this.HealthPoints);
+            this.invokeAction(PlayerAttribute.Hp, this.HealthPoints);
         }
 
         public void IncreaseExperience(int amount)
         {
             this.Experience += amount;
-            this.PlayerLifeChanged?.Invoke(this.Experience);
+            this.invokeAction(PlayerAttribute.Experience, this.Experience);
         } 
 
         public void PowerUp(int amount)
         {
             this.HealthPoints += CheckNotExceeding(this.HealthPoints + amount, MaxHealthPoints);
-            this.PlayerLifeChanged?.Invoke(this.HealthPoints);
+            this.PlayerLifeChanged?.Invoke(PlayerAttribute.Hp, this.HealthPoints);
         }
 
         public void AddStrength(int amount) => this.Strength += amount;
