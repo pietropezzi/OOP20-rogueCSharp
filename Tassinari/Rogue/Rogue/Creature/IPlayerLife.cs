@@ -1,4 +1,4 @@
-namespace rogue
+namespace Rogue.Creature
 {
     public interface IPlayerLife : ILife
     {

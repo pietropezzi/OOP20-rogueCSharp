@@ -1,4 +1,4 @@
-namespace rogue
+namespace Rogue.Creature
 {
     /// <summary>
     /// An interface modeling a life for a Creature.

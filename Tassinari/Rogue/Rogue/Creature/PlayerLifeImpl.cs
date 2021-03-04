@@ -1,19 +1,68 @@
 using System;
 using System.Collections.Generic;
 
-namespace rogue
+namespace Rogue.Creature
 {
     public class PlayerLifeImpl : AbstractLife, IPlayerLife
     {
 
         public Action<int> playerLifeChanged;
+
+        private int maxHealthPoints;
+        private int strength;
+        private int food;
+        private int level;
+        private int coins;
         
         // add strategies ...
-        public int MaxHealthPoints { get; private set; }
-        public int Strength { get; private set; }
-        public int Food { get; private set; }
-        public int Level { get; private set; }
-        public int Coins { get; private set; }
+        public int MaxHealthPoints
+        {
+            get => this.maxHealthPoints;
+            private set
+            {
+                this.maxHealthPoints = value;
+                this.playerLifeChanged?.Invoke(this.maxHealthPoints);
+            }
+        }
+
+        public int Strength
+        {
+            get => this.strength;
+            private set
+            {
+                this.strength = value;
+                this.playerLifeChanged?.Invoke(this.strength);
+            }
+        }
+        public int Food 
+        {
+            get => this.food;
+            private set
+            {
+                this.food = value;
+                this.playerLifeChanged?.Invoke(this.food);
+            }
+        }
+
+        public int Level
+        {
+            get => this.level;
+            private set
+            {
+                this.level = value;
+                this.playerLifeChanged?.Invoke(this.level);
+            }
+        }
+
+        public int Coins
+        {
+            get => this.coins;
+            private set
+            {
+                this.coins = value;
+                this.playerLifeChanged?.Invoke(this.coins);
+            }
+        }
 
         private PlayerLifeImpl(int experience, int healthPoints, int maxHealthPoints,
             int strength, int food, int level, int coins) : base(healthPoints, experience)
@@ -25,51 +74,45 @@ namespace rogue
             this.Coins = coins;
         }
 
-        private int checkNotExceeding(int val, int max) => val > max ? max : val;
+        private static int checkNotExceeding(int val, int max) => val > max ? max : val;
 
         public override void hurt(int damage)
         {
             base.hurt(damage);
+            this.playerLifeChanged?.Invoke(this.HealthPoints);
         }
 
         public void increaseExperience(int amount)
         {
             this.Experience += amount;
+            this.playerLifeChanged?.Invoke(this.Experience);
         } 
 
         public void powerUp(int amount)
         {
-            this.HealthPoints += this.checkNotExceeding(this.HealthPoints + amount, MaxHealthPoints);
+            this.HealthPoints += checkNotExceeding(this.HealthPoints + amount, MaxHealthPoints);
+            this.playerLifeChanged?.Invoke(this.HealthPoints);
         }
 
-        public void addStrength(int amount)
-        {
-            this.Strength += amount;
-        }
+        public void addStrength(int amount) => this.Strength += amount;
 
         private void updateFood(int amount)
         {
             var newFood = this.Food + amount;
-            this.Food = this.checkNotNegative(this.checkNotExceeding(newFood, MaxHealthPoints));
+            this.Food = this.checkNotNegative(checkNotExceeding(newFood, MaxHealthPoints));
         }
 
         public void increaseFood(int amount) => this.updateFood(amount);
 
         public void decreaseFood(int amount) => this.updateFood(-amount);
 
-        private void updateCoins(int amount)
-        {
-            this.Coins = this.checkNotNegative(this.Coins + amount);
-        }
+        private void updateCoins(int amount) => this.Coins = this.checkNotNegative(this.Coins + amount);
 
         public void addCoins(int amount) => this.updateCoins(amount);
 
         public void subCoins(int amount) => this.updateCoins(-amount);
 
-        public override bool isDead()
-        {
-            return base.isDead() || this.Food == 0;
-        }
+        public override bool isDead() => base.isDead() || this.Food == 0;
 
         public class Builder
         {

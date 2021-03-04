@@ -1,4 +1,4 @@
-namespace rogue
+namespace Rogue.Creature
 {
     public abstract class AbstractLife : ILife
     {
