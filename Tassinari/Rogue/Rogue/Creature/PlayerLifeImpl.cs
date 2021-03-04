@@ -7,7 +7,7 @@ namespace Rogue.Creature
         /// <summary>
         /// Event handler for life changes.
         /// </summary>
-        public Action<PlayerAttribute, int> PlayerLifeChanged;
+        public event Action<PlayerAttribute, int> PlayerLifeChanged;
         
         private int _maxHealthPoints;
         private int _strength;
@@ -19,6 +19,7 @@ namespace Rogue.Creature
 
         private void invokeAction(PlayerAttribute attribute, int value) =>
             this.PlayerLifeChanged?.Invoke(attribute, value);
+        
         public int MaxHealthPoints
         {
             get => this._maxHealthPoints;
@@ -140,48 +141,88 @@ namespace Rogue.Creature
             private int _coins = Coins;
             private bool _consumed;
 
+            /// <summary>
+            /// Initialize the player maximum health points.
+            /// </summary>
+            /// <param name="maxHealthPoints">the max player health points.</param>
+            /// <returns>this Builder for chaining</returns>
             public Builder InitMaxHealthPoints(int maxHealthPoints)
             {
                 this._maxHealthPoints = maxHealthPoints;
                 return this;
             }
             
+            /// <summary>
+            /// Initialize the player health points.
+            /// </summary>
+            /// <param name="healthPoints">the initial player health points.</param>
+            /// <returns>this Builder for chaining</returns>
             public Builder InitHealthPoints(int healthPoints)
             {
                 this._healthPoints = healthPoints;
                 return this;
             }
             
+            /// <summary>
+            /// Initialize the food.
+            /// </summary>
+            /// <param name="food">the initial food quantity.</param>
+            /// <returns>this Builder for chaining</returns>
             public Builder InitFood(int food)
             {
                 this._food = food;
                 return this;
             }
             
+            /// <summary>
+            /// Initialize the player experience.
+            /// </summary>
+            /// <param name="experience">the initial player experience.</param>
+            /// <returns>this Builder for chaining</returns>
             public Builder InitExperience(int experience)
             {
                 this._experience = experience;
                 return this;
             }
 
+            /// <summary>
+            /// Initialize the player strength.
+            /// </summary>
+            /// <param name="strength">the initial player strength.</param>
+            /// <returns>this Builder for chaining</returns>
             public Builder InitStrength(int strength)
             {
                 this._strength = strength;
                 return this;
             }
 
+            /// <summary>
+            /// Initialize the player level.
+            /// </summary>
+            /// <param name="level">the initial player level.</param>
+            /// <returns>this Builder for chaining</returns>
             public Builder InitLevel(int level)
             {
                 this._level = level;
                 return this;
             }
-
+            
+            /// <summary>
+            /// Initialize the amount of coins.
+            /// </summary>
+            /// <param name="coins">the initial amount of coins.</param>
+            /// <returns>this Builder for chaining</returns>
             public Builder InitCoins(int coins)
             {
                 this._coins = coins;
                 return this;
             }
 
+            /// <summary>
+            /// Builds a new PlayerLifeImpl.
+            /// </summary>
+            /// <returns>a new PlayerLifeImpl</returns>
+            /// <exception cref="InvalidOperationException">if a PlayerLifeImpl was already created.</exception>
             public PlayerLifeImpl Build()
             {
                 if (_consumed)
