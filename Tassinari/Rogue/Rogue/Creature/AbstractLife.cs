@@ -24,13 +24,13 @@ namespace Rogue.Creature
         /// </summary>
         /// <param name="value">the value to check.</param>
         /// <returns>the value given if it's positive, 0 otherwise.</returns>
-        protected static int checkNotNegative(int value) => value < 0 ? 0 : value;
+        protected static int CheckNotNegative(int value) => value < 0 ? 0 : value;
 
         /// <inheritdoc cref="ILife"/>
-        public virtual void hurt(int damage) => 
-            this.HealthPoints = checkNotNegative(this.HealthPoints - damage);
+        public virtual void Hurt(int damage) => 
+            this.HealthPoints = CheckNotNegative(this.HealthPoints - damage);
 
         /// <inheritdoc cref="ILife"/>
-        public virtual bool isDead() => this.HealthPoints == 0;
+        public virtual bool IsDead() => this.HealthPoints == 0;
     }
 }

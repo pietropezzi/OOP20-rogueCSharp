@@ -9,12 +9,12 @@ namespace Rogue.Creature
         /// Hurts the creature.
         /// </summary>
         /// <param name="damage">The quantity to subtract to health points.</param>
-        void hurt(int damage);
+        void Hurt(int damage);
 
         /// <summary>
         /// Determines whether the creature is dead or still alive.
         /// </summary>
         /// <returns>true if the creature is dead, false otherwise.</returns>
-        bool isDead();
+        bool IsDead();
     }
 }

@@ -7,7 +7,7 @@ namespace Rogue
     {
         public StatusBarControllerImpl(PlayerLifeImpl life)
         {
-            life.playerLifeChanged += newValue => Console.WriteLine(newValue);
+            life.PlayerLifeChanged += newValue => Console.WriteLine(newValue);
         }
         
     }

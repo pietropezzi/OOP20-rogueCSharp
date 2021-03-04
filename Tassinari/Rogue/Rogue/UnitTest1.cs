@@ -13,7 +13,7 @@ namespace Rogue
             var pl = new PlayerLifeImpl.Builder().Build();
             var sbc = new StatusBarControllerImpl(pl);
             Assert.AreEqual(16, pl.Strength);
-            pl.addStrength(2);
+            pl.AddStrength(2);
             Assert.AreEqual(18, pl.Strength);
         }
         

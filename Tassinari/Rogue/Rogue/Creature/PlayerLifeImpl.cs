@@ -5,61 +5,61 @@ namespace Rogue.Creature
     public class PlayerLifeImpl : AbstractLife, IPlayerLife
     {
 
-        public Action<int> playerLifeChanged;
+        public Action<int> PlayerLifeChanged;
 
-        private int maxHealthPoints;
-        private int strength;
-        private int food;
-        private int level;
-        private int coins;
+        private int _maxHealthPoints;
+        private int _strength;
+        private int _food;
+        private int _level;
+        private int _coins;
         
         // add strategies ...
         public int MaxHealthPoints
         {
-            get => this.maxHealthPoints;
+            get => this._maxHealthPoints;
             private set
             {
-                this.maxHealthPoints = value;
-                this.playerLifeChanged?.Invoke(this.maxHealthPoints);
+                this._maxHealthPoints = value;
+                this.PlayerLifeChanged?.Invoke(this._maxHealthPoints);
             }
         }
 
         public int Strength
         {
-            get => this.strength;
+            get => this._strength;
             private set
             {
-                this.strength = value;
-                this.playerLifeChanged?.Invoke(this.strength);
+                this._strength = value;
+                this.PlayerLifeChanged?.Invoke(this._strength);
             }
         }
         public int Food 
         {
-            get => this.food;
+            get => this._food;
             private set
             {
-                this.food = value;
-                this.playerLifeChanged?.Invoke(this.food);
+                this._food = value;
+                this.PlayerLifeChanged?.Invoke(this._food);
             }
         }
 
         public int Level
         {
-            get => this.level;
+            get => this._level;
             private set
             {
-                this.level = value;
-                this.playerLifeChanged?.Invoke(this.level);
+                this._level = value;
+                this.PlayerLifeChanged?.Invoke(this._level);
             }
         }
 
         public int Coins
         {
-            get => this.coins;
+            get => this._coins;
             private set
             {
-                this.coins = value;
-                this.playerLifeChanged?.Invoke(this.coins);
+                this._coins = value;
+                this.PlayerLifeChanged?.Invoke(this._coins);
             }
         }
 
@@ -73,45 +73,45 @@ namespace Rogue.Creature
             this.Coins = coins;
         }
 
-        private static int checkNotExceeding(int val, int max) => val > max ? max : val;
+        private static int CheckNotExceeding(int val, int max) => val > max ? max : val;
 
-        public override void hurt(int damage)
+        public override void Hurt(int damage)
         {
-            base.hurt(damage);
-            this.playerLifeChanged?.Invoke(this.HealthPoints);
+            base.Hurt(damage);
+            this.PlayerLifeChanged?.Invoke(this.HealthPoints);
         }
 
-        public void increaseExperience(int amount)
+        public void IncreaseExperience(int amount)
         {
             this.Experience += amount;
-            this.playerLifeChanged?.Invoke(this.Experience);
+            this.PlayerLifeChanged?.Invoke(this.Experience);
         } 
 
-        public void powerUp(int amount)
+        public void PowerUp(int amount)
         {
-            this.HealthPoints += checkNotExceeding(this.HealthPoints + amount, MaxHealthPoints);
-            this.playerLifeChanged?.Invoke(this.HealthPoints);
+            this.HealthPoints += CheckNotExceeding(this.HealthPoints + amount, MaxHealthPoints);
+            this.PlayerLifeChanged?.Invoke(this.HealthPoints);
         }
 
-        public void addStrength(int amount) => this.Strength += amount;
+        public void AddStrength(int amount) => this.Strength += amount;
 
-        private void updateFood(int amount)
+        private void UpdateFood(int amount)
         {
             var newFood = this.Food + amount;
-            this.Food = checkNotNegative(checkNotExceeding(newFood, MaxHealthPoints));
+            this.Food = CheckNotNegative(CheckNotExceeding(newFood, MaxHealthPoints));
         }
 
-        public void increaseFood(int amount) => this.updateFood(amount);
+        public void IncreaseFood(int amount) => this.UpdateFood(amount);
 
-        public void decreaseFood(int amount) => this.updateFood(-amount);
+        public void DecreaseFood(int amount) => this.UpdateFood(-amount);
 
-        private void updateCoins(int amount) => this.Coins = checkNotNegative(this.Coins + amount);
+        private void UpdateCoins(int amount) => this.Coins = CheckNotNegative(this.Coins + amount);
 
-        public void addCoins(int amount) => this.updateCoins(amount);
+        public void AddCoins(int amount) => this.UpdateCoins(amount);
 
-        public void subCoins(int amount) => this.updateCoins(-amount);
+        public void SubCoins(int amount) => this.UpdateCoins(-amount);
 
-        public override bool isDead() => base.isDead() || this.Food == 0;
+        public override bool IsDead() => base.IsDead() || this.Food == 0;
 
         public class Builder
         {
@@ -126,66 +126,66 @@ namespace Rogue.Creature
 
             // insert strategies
             
-            private int maxHealthPoints = MaxHealthPoints;
-            private int healthPoints = HealthPoints;
-            private int food = Food;
-            private int experience = Experience;
-            private int strength = Strength;
-            private int level = Level;
-            private int coins = Coins;
-            private bool consumed = false;
+            private int _maxHealthPoints = MaxHealthPoints;
+            private int _healthPoints = HealthPoints;
+            private int _food = Food;
+            private int _experience = Experience;
+            private int _strength = Strength;
+            private int _level = Level;
+            private int _coins = Coins;
+            private bool _consumed;
 
             public Builder InitMaxHealthPoints(int maxHealthPoints)
             {
-                this.maxHealthPoints = maxHealthPoints;
+                this._maxHealthPoints = maxHealthPoints;
                 return this;
             }
             
             public Builder InitHealthPoints(int healthPoints)
             {
-                this.healthPoints = healthPoints;
+                this._healthPoints = healthPoints;
                 return this;
             }
             
             public Builder InitFood(int food)
             {
-                this.food = food;
+                this._food = food;
                 return this;
             }
             
             public Builder InitExperience(int experience)
             {
-                this.experience = experience;
+                this._experience = experience;
                 return this;
             }
 
             public Builder InitStrength(int strength)
             {
-                this.strength = strength;
+                this._strength = strength;
                 return this;
             }
 
             public Builder InitLevel(int level)
             {
-                this.level = level;
+                this._level = level;
                 return this;
             }
 
             public Builder InitCoins(int coins)
             {
-                this.coins = coins;
+                this._coins = coins;
                 return this;
             }
 
             public PlayerLifeImpl Build()
             {
-                if (consumed)
+                if (_consumed)
                 {
                     throw new InvalidOperationException();
                 }
 
-                consumed = true;
-                return new PlayerLifeImpl(experience, healthPoints, maxHealthPoints, strength, food, level, coins);
+                _consumed = true;
+                return new PlayerLifeImpl(_experience, _healthPoints, _maxHealthPoints, _strength, _food, _level, _coins);
             }
             
         }
