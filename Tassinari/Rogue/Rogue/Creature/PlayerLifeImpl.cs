@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Rogue.Creature
 {
@@ -99,14 +98,14 @@ namespace Rogue.Creature
         private void updateFood(int amount)
         {
             var newFood = this.Food + amount;
-            this.Food = this.checkNotNegative(checkNotExceeding(newFood, MaxHealthPoints));
+            this.Food = checkNotNegative(checkNotExceeding(newFood, MaxHealthPoints));
         }
 
         public void increaseFood(int amount) => this.updateFood(amount);
 
         public void decreaseFood(int amount) => this.updateFood(-amount);
 
-        private void updateCoins(int amount) => this.Coins = this.checkNotNegative(this.Coins + amount);
+        private void updateCoins(int amount) => this.Coins = checkNotNegative(this.Coins + amount);
 
         public void addCoins(int amount) => this.updateCoins(amount);
 
