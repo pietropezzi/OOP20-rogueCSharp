@@ -59,9 +59,7 @@ namespace Rogue.Armor
         }
 
         /// <inheritdoc cref="ToString"/>
-        public override string ToString()
-        {
-            return this.Armor.Name + " (" + this.Ac + ")";
-        }
+        public override string ToString() => this.Armor.Name + " (" + this.Ac + ")";
+        
     }
 }

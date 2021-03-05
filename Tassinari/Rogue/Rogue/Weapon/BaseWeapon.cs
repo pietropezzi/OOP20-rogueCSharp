@@ -46,10 +46,7 @@ namespace Rogue.Weapon
             return (Weapon != null ? Weapon.GetHashCode() : 0);
         }
 
-        /// <inheritdoc cref="object.ToString"/>
-        public override string ToString()
-        {
-            return this.Weapon.Name;
-        }
+        /// <inheritdoc cref="ToString"/>
+        public override string ToString() => this.Weapon.Name;
     }
 }
