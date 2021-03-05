@@ -9,11 +9,11 @@ namespace Rogue.Weapon
     /// </summary>
     public class WeaponType
     {
-        private static readonly WeaponType Mace = 
+        public static readonly WeaponType Mace = 
             new WeaponType(Tuple.Create(2, 4), Tuple.Create(1, 3), "Mace");
-        private static readonly WeaponType LongSword = 
+        public static readonly WeaponType LongSword = 
             new WeaponType(Tuple.Create(3, 4), Tuple.Create(1, 2), "Long sword");
-        private static readonly WeaponType ShortBow = 
+        public static readonly WeaponType ShortBow = 
             new WeaponType(Tuple.Create(1, 1), Tuple.Create(1, 1), "Short Bow");
 
         private const int WeaponAccuracy = 0;
