@@ -10,10 +10,10 @@ namespace Rogue.Weapon
         protected WeaponDecorator(IWeapon weapon) => this._weapon = weapon;
 
         /// <inheritdoc cref="IWeapon"/>
-        public int Accuracy() => this._weapon.Accuracy();
+        public virtual int Accuracy() => this._weapon.Accuracy();
 
         /// <inheritdoc cref="IWeapon"/>
-        public int Damage(IWeapon.Use use) => this._weapon.Damage(use);
+        public virtual int Damage(IWeapon.Use use) => this._weapon.Damage(use);
 
         /// <inheritdoc cref="IItem"/>
         public bool Use(Player player) => this._weapon.Use(player);
