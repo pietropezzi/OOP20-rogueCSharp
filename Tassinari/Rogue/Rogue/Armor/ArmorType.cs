@@ -1,5 +1,9 @@
 namespace Rogue.Armor
 {
+    /// <summary>
+    /// A class for declaring armor types.
+    /// The first field of each type keeps track the armor's AC, while the second its name.
+    /// </summary>
     public class ArmorType
     {
         public static readonly ArmorType Leather = new ArmorType(8, "Leather");
@@ -11,8 +15,8 @@ namespace Rogue.Armor
         public static readonly ArmorType BandedMail = new ArmorType(4, "Banded mail");
         public static readonly ArmorType PlateMail = new ArmorType(3, "Plate mail");
 
-        protected int Ac { get; private set; }
-        protected string Name { get; private set; }
+        public int Ac { get; private set; }
+        public string Name { get; private set; }
 
         private ArmorType(int ac, string name) => (Ac, Name) = (ac, name);
     }
