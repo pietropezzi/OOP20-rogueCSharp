@@ -18,8 +18,8 @@ namespace Rogue.Weapon
 
         private const int WeaponAccuracy = 0;
 
-        private readonly Dictionary<IWeapon.Use, Tuple<int, int>> damages =
-            new Dictionary<IWeapon.Use, Tuple<int, int>>();
+        private readonly Dictionary<IWeapon.WeaponUse, Tuple<int, int>> damages =
+            new Dictionary<IWeapon.WeaponUse, Tuple<int, int>>();
         private readonly Random rnd = new Random();
         
         /// <summary>
@@ -35,20 +35,20 @@ namespace Rogue.Weapon
         private WeaponType(Tuple<int, int> handledDamage, Tuple<int, int> thrownDamage, string name)
         {
             this.Name = name;
-            this.damages.Add(IWeapon.Use.THROWN, thrownDamage);
-            this.damages.Add(IWeapon.Use.HANDLED, handledDamage);
+            this.damages.Add(IWeapon.WeaponUse.THROWN, thrownDamage);
+            this.damages.Add(IWeapon.WeaponUse.HANDLED, handledDamage);
         }
 
         /// <summary>
         /// Gets the damage generation function.
         /// </summary>
-        /// <param name="use"> the <see cref="IWeapon.Use"/> of the weapon.</param>
+        /// <param name="weaponUse"> the <see cref="IWeapon.WeaponUse"/> of the weapon.</param>
         /// <returns>the <see cref="Func{TResult}"/> which express the damage generation function.</returns>
-        public Func<int> GetDamage(IWeapon.Use use)
+        public Func<int> GetDamage(IWeapon.WeaponUse weaponUse)
         {
             return () => Enumerable.Sum(Enumerable
-                .Range(0, damages[use].Item1)
-                .Select(i => rnd.Next(damages[use].Item2) + 1));
+                .Range(0, damages[weaponUse].Item1)
+                .Select(i => rnd.Next(damages[weaponUse].Item2) + 1));
         }
 
     }

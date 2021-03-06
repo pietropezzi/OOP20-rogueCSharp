@@ -15,7 +15,7 @@ namespace Rogue.Weapon
         public virtual int Accuracy() => this._weapon.Accuracy();
 
         /// <inheritdoc cref="IWeapon"/>
-        public virtual int Damage(IWeapon.Use use) => this._weapon.Damage(use);
+        public virtual int Damage(IWeapon.WeaponUse weaponUse) => this._weapon.Damage(weaponUse);
 
         /// <inheritdoc cref="IItem"/>
         public bool Use(IPlayer player) => this._weapon.Use(player);

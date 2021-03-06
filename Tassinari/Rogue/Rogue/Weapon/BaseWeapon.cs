@@ -16,7 +16,7 @@ namespace Rogue.Weapon
         public BaseWeapon(WeaponType weapon) => Weapon = weapon;
 
         /// <inheritdoc cref="IWeapon"/>
-        public int Damage(IWeapon.Use use) => this.Weapon.GetDamage(use).Invoke();
+        public int Damage(IWeapon.WeaponUse weaponUse) => this.Weapon.GetDamage(weaponUse).Invoke();
 
         /// <inheritdoc cref="IWeapon"/>
         public int Accuracy() => WeaponType.Accuracy;

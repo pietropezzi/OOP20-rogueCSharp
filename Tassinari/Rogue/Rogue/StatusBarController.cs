@@ -13,9 +13,9 @@ namespace Rogue
         public StatusBarController(IPlayer player)
         {
             player.Life.PlayerLifeChanged += OnLifeChange;
-            foreach (var attribute in player.Life.Values)
+            foreach (var (attribute, value) in player.Life.Values)
             {
-                OnLifeChange(attribute.Item1, attribute.Item2);
+                OnLifeChange(attribute, value);
             }
         }
 

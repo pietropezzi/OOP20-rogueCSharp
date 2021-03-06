@@ -14,7 +14,7 @@ namespace Rogue.Weapon
         public IncreaseDamage(IWeapon weapon) : base(weapon) {}
 
         /// <inheritdoc cref="IWeapon"/>
-        public override int Damage(IWeapon.Use use) => base.Damage(use) + AdditionalDamage;
+        public override int Damage(IWeapon.WeaponUse weaponUse) => base.Damage(weaponUse) + AdditionalDamage;
 
         /// <inheritdoc cref="ToString"/>
         public override string ToString() => base.ToString() + " ID";
