@@ -6,6 +6,16 @@ namespace Rogue.Creature
     public interface ILife
     {
         /// <summary>
+        /// Gets the health points.
+        /// </summary>
+        int HealthPoints { get; }
+        
+        /// <summary>
+        /// Gets the experience.
+        /// </summary>
+        int Experience { get; }
+        
+        /// <summary>
         /// Hurts the creature.
         /// </summary>
         /// <param name="damage">The quantity to subtract to health points.</param>

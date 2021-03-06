@@ -29,7 +29,8 @@ namespace Rogue.Creature
         /// Event handler for life changes.
         /// </summary>
         public event Action<PlayerAttribute, int> PlayerLifeChanged;
-        
+
+        private const int MaxFoodLevel = 100;
         private int _maxHealthPoints;
         private int _strength;
         private int _food;
@@ -40,7 +41,9 @@ namespace Rogue.Creature
 
         private void invokeAction(PlayerAttribute attribute, int value) =>
             this.PlayerLifeChanged?.Invoke(attribute, value);
-        
+
+        public int MaxFood => MaxFoodLevel;
+
         public int MaxHealthPoints
         {
             get => this._maxHealthPoints;
@@ -125,7 +128,7 @@ namespace Rogue.Creature
         private void UpdateFood(int amount)
         {
             var newFood = this.Food + amount;
-            this.Food = CheckNotNegative(CheckNotExceeding(newFood, MaxHealthPoints));
+            this.Food = CheckNotNegative(CheckNotExceeding(newFood, MaxFoodLevel));
         }
 
         public void IncreaseFood(int amount) => this.UpdateFood(amount);
@@ -248,7 +251,7 @@ namespace Rogue.Creature
             {
                 if (_consumed)
                 {
-                    throw new InvalidOperationException();
+                    throw new InvalidOperationException("Cannot build twice!");
                 }
 
                 _consumed = true;

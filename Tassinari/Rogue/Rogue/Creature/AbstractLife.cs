@@ -5,8 +5,8 @@ namespace Rogue.Creature
     /// </summary>
     public abstract class AbstractLife : ILife
     {
-        protected int HealthPoints { get; set; }
-        protected int Experience { get; set; }
+        public int HealthPoints { get; protected set; }
+        public int Experience { get; protected set; }
 
         /// <summary>
         /// Creates a new AbstractLife.
