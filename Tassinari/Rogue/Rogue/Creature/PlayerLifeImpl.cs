@@ -2,6 +2,27 @@ using System;
 
 namespace Rogue.Creature
 {
+    /// <summary>
+    /// Represents an enumeration for declaring player attributes.
+    /// </summary>
+    public enum PlayerAttribute
+    {
+        /// <summary>Maximum health point value.</summary>
+        MaxHp,
+        /// <summary>Maximum health point value.</summary>
+        Hp,
+        /// <summary>Maximum health point value.</summary>
+        Coins,
+        /// <summary>Maximum health point value.</summary>
+        Level,
+        /// <summary>Maximum health point value.</summary>
+        Strength,
+        /// <summary>Maximum health point value.</summary>
+        Experience,
+        /// <summary>Maximum health point value.</summary>
+        Food
+    }
+
     public class PlayerLifeImpl : AbstractLife, IPlayerLife
     {
         /// <summary>
