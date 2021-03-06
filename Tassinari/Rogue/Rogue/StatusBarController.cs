@@ -4,6 +4,9 @@ using Rogue.Creature;
 
 namespace Rogue
 {
+    /// <summary>
+    /// The status bar controller.
+    /// </summary>
     public class StatusBarController
     {
         /// <summary>
