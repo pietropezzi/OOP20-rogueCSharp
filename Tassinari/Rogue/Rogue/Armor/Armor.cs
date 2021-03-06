@@ -6,21 +6,21 @@ namespace Rogue.Armor
     /// <summary>
     /// Represents a simple implementation for a game <see cref="IArmor"/>.
     /// </summary>
-    public class ArmorImpl : IArmor
+    public class Armor : IArmor
     {
         /// <summary>
         /// Gets the <see cref="ArmorType"/>.
         /// </summary>
-        public ArmorType Armor { get; private set; }
+        public ArmorType ArmorType { get; private set; }
         
         /// <summary>
         /// Gets the armor AC.
         /// </summary>
         public int Ac { get; private set; }
 
-        public ArmorImpl(ArmorType armor)
+        public Armor(ArmorType armor)
         {
-            this.Armor = armor;
+            this.ArmorType = armor;
             this.Ac = armor.Ac;
         }
 
@@ -39,9 +39,9 @@ namespace Rogue.Armor
         }
         
         /// <inheritdoc cref="Equals(Rogue.Armor.ArmorImpl)"/>
-        protected bool Equals(ArmorImpl other)
+        private bool Equals(Armor other)
         {
-            return Equals(Armor, other.Armor) && Ac == other.Ac;
+            return Equals(ArmorType, other.ArmorType) && Ac == other.Ac;
         }
 
         /// <inheritdoc cref="object.Equals(object?)"/>
@@ -50,17 +50,17 @@ namespace Rogue.Armor
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((ArmorImpl) obj);
+            return Equals((Armor) obj);
         }
         
         /// <inheritdoc cref="object.GetHashCode"/>
         public override int GetHashCode()
         {
-            return HashCode.Combine(Armor, Ac);
+            return HashCode.Combine(ArmorType, Ac);
         }
 
         /// <inheritdoc cref="ToString"/>
-        public override string ToString() => this.Armor.Name + " (" + this.Ac + ")";
+        public override string ToString() => this.ArmorType.Name + " (" + this.Ac + ")";
         
     }
 }

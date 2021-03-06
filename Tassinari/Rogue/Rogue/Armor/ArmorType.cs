@@ -15,7 +15,14 @@ namespace Rogue.Armor
         public static readonly ArmorType BandedMail = new ArmorType(4, "Banded mail");
         public static readonly ArmorType PlateMail = new ArmorType(3, "Plate mail");
 
+        /// <summary>
+        /// Gets the default AC armor value.
+        /// </summary>
         public int Ac { get; private set; }
+        
+        /// <summary>
+        /// Gets the armor name.
+        /// </summary>
         public string Name { get; private set; }
 
         private ArmorType(int ac, string name) => (Ac, Name) = (ac, name);
