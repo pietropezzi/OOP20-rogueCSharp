@@ -27,11 +27,9 @@ namespace Rogue.Creature
 
     public class PlayerLife : AbstractLife, IPlayerLife
     {
-        /// <summary>
-        /// Event handler for life changes.
-        /// </summary>
+        /// <inheritdoc cref="IPlayerLife"/>
         public event Action<PlayerAttribute, int> PlayerLifeChanged;
-
+        
         private const int MaxFoodLevel = 100;
         private int _maxHealthPoints;
         private int _strength;
@@ -41,6 +39,7 @@ namespace Rogue.Creature
         
         // add strategies ...
 
+        /// <inheritdoc cref="IPlayerLife"/>
         public IEnumerable<Tuple<PlayerAttribute, int>> Values
         {
             get
@@ -58,8 +57,10 @@ namespace Rogue.Creature
         private void invokeAction(PlayerAttribute attribute, int value) =>
             this.PlayerLifeChanged?.Invoke(attribute, value);
 
+        /// <inheritdoc cref="IPlayerLife"/>
         public int MaxFood => MaxFoodLevel;
 
+        /// <inheritdoc cref="IPlayerLife"/>
         public int MaxHealthPoints
         {
             get => this._maxHealthPoints;
@@ -70,6 +71,7 @@ namespace Rogue.Creature
             }
         }
 
+        /// <inheritdoc cref="IPlayerLife"/>
         public int Strength
         {
             get => this._strength;
@@ -79,6 +81,8 @@ namespace Rogue.Creature
                 this.invokeAction(PlayerAttribute.Strength, this._strength);
             }
         }
+        
+        /// <inheritdoc cref="IPlayerLife"/>
         public int Food 
         {
             get => this._food;
@@ -89,6 +93,7 @@ namespace Rogue.Creature
             }
         }
 
+        /// <inheritdoc cref="IPlayerLife"/>
         public int Level
         {
             get => this._level;
@@ -99,6 +104,7 @@ namespace Rogue.Creature
             }
         }
 
+        /// <inheritdoc cref="IPlayerLife"/>
         public int Coins
         {
             get => this._coins;
@@ -121,24 +127,28 @@ namespace Rogue.Creature
 
         private static int CheckNotExceeding(int val, int max) => val > max ? max : val;
 
+        /// <inheritdoc cref="ILife"/>
         public override void Hurt(int damage)
         {
             base.Hurt(damage);
             this.invokeAction(PlayerAttribute.Hp, this.HealthPoints);
         }
-
+        
+        /// <inheritdoc cref="IPlayerLife"/>
         public void IncreaseExperience(int amount)
         {
             this.Experience += amount;
             this.invokeAction(PlayerAttribute.Experience, this.Experience);
         } 
 
+        /// <inheritdoc cref="IPlayerLife"/>
         public void PowerUp(int amount)
         {
             this.HealthPoints += CheckNotExceeding(this.HealthPoints + amount, MaxHealthPoints);
             this.PlayerLifeChanged?.Invoke(PlayerAttribute.Hp, this.HealthPoints);
         }
-
+        
+        /// <inheritdoc cref="IPlayerLife"/>
         public void AddStrength(int amount) => this.Strength += amount;
 
         private void UpdateFood(int amount)
@@ -147,16 +157,21 @@ namespace Rogue.Creature
             this.Food = CheckNotNegative(CheckNotExceeding(newFood, MaxFoodLevel));
         }
 
+        /// <inheritdoc cref="IPlayerLife"/>
         public void IncreaseFood(int amount) => this.UpdateFood(amount);
 
+        /// <inheritdoc cref="IPlayerLife"/>
         public void DecreaseFood(int amount) => this.UpdateFood(-amount);
 
         private void UpdateCoins(int amount) => this.Coins = CheckNotNegative(this.Coins + amount);
 
+        /// <inheritdoc cref="IPlayerLife"/>
         public void AddCoins(int amount) => this.UpdateCoins(amount);
 
+        /// <inheritdoc cref="IPlayerLife"/>
         public void SubCoins(int amount) => this.UpdateCoins(-amount);
 
+        /// <inheritdoc cref="ILife"/>
         public override bool IsDead() => base.IsDead() || this.Food == 0;
 
         public class Builder

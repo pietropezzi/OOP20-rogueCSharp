@@ -7,9 +7,9 @@ namespace Rogue
     {
         public static void Main()
         {
-            var pl = new PlayerLife.Builder().Build();
-            var sbc = new StatusBarControllerImpl(pl);
-            pl.AddStrength(5);
+            var player = new PlayerFactory().Create();
+            var sbc = new StatusBarController(player);
+            player.Life.AddStrength(5);
         }
     }
 }

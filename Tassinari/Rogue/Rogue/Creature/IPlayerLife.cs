@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace Rogue.Creature
 {
     /// <summary>
@@ -5,6 +8,16 @@ namespace Rogue.Creature
     /// </summary>
     public interface IPlayerLife : ILife
     {
+        /// <summary>
+        /// Event handler for life changes.
+        /// </summary>
+        event Action<PlayerAttribute, int> PlayerLifeChanged;
+
+        /// <summary>
+        /// Gets all the attribute's values.
+        /// </summary>
+        IEnumerable<Tuple<PlayerAttribute, int>> Values { get; }
+
         /// <summary>
         /// Increases the player experience.
         /// </summary>
