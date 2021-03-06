@@ -7,7 +7,7 @@ namespace Rogue
     {
         public static void Main()
         {
-            var pl = new PlayerLifeImpl.Builder().Build();
+            var pl = new PlayerLife.Builder().Build();
             var sbc = new StatusBarControllerImpl(pl);
             pl.AddStrength(5);
         }

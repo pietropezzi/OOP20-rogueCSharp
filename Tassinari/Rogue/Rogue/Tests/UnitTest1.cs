@@ -46,7 +46,7 @@ namespace Rogue
             const int exp  = 20;
             const int food = 10;
 
-            var lifeBuilder = new PlayerLifeImpl.Builder();
+            var lifeBuilder = new PlayerLife.Builder();
             this._player = new PlayerFactory().CreateByLife(lifeBuilder
                 .InitHealthPoints(hp)
                 .InitStrength(str)
@@ -93,7 +93,7 @@ namespace Rogue
         [ExpectedException(typeof(InvalidOperationException), "Cannot build twice!")]
         public void TestMultipleBuild()
         {
-            var lifeBuilder = new PlayerLifeImpl.Builder();
+            var lifeBuilder = new PlayerLife.Builder();
             lifeBuilder.Build();
             lifeBuilder.Build();
         }

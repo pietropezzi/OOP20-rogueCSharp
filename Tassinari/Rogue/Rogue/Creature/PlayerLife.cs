@@ -23,7 +23,7 @@ namespace Rogue.Creature
         Food
     }
 
-    public class PlayerLifeImpl : AbstractLife, IPlayerLife
+    public class PlayerLife : AbstractLife, IPlayerLife
     {
         /// <summary>
         /// Event handler for life changes.
@@ -93,7 +93,7 @@ namespace Rogue.Creature
             }
         }
 
-        private PlayerLifeImpl(int experience, int healthPoints, int maxHealthPoints,
+        private PlayerLife(int experience, int healthPoints, int maxHealthPoints,
             int strength, int food, int level, int coins) : base(healthPoints, experience)
         {
             this.MaxHealthPoints = maxHealthPoints;
@@ -247,7 +247,7 @@ namespace Rogue.Creature
             /// </summary>
             /// <returns>a new PlayerLifeImpl</returns>
             /// <exception cref="InvalidOperationException">if a PlayerLifeImpl was already created.</exception>
-            public PlayerLifeImpl Build()
+            public PlayerLife Build()
             {
                 if (_consumed)
                 {
@@ -255,7 +255,7 @@ namespace Rogue.Creature
                 }
 
                 _consumed = true;
-                return new PlayerLifeImpl(_experience, _healthPoints, _maxHealthPoints, _strength, _food, _level, _coins);
+                return new PlayerLife(_experience, _healthPoints, _maxHealthPoints, _strength, _food, _level, _coins);
             }
             
         }

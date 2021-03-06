@@ -9,7 +9,7 @@ namespace Rogue
         /// Creates a new StatusBarControllerImpl
         /// </summary>
         /// <param name="life">the player life.</param>
-        public StatusBarControllerImpl(PlayerLifeImpl life)
+        public StatusBarControllerImpl(PlayerLife life)
         {
             life.PlayerLifeChanged += OnLifeChange;
         }

@@ -24,7 +24,7 @@ namespace Rogue.Creature
         }
 
         /// <inheritdoc cref="IPlayerFactory"/>
-        public IPlayer Create() => CreateByLife(new PlayerLifeImpl.Builder().Build());
+        public IPlayer Create() => CreateByLife(new PlayerLife.Builder().Build());
         
         /// <inheritdoc cref="IPlayerFactory"/>
         public IPlayer CreateByLife(IPlayerLife life)
