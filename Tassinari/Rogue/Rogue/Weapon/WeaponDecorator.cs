@@ -1,3 +1,5 @@
+using Rogue.Creature;
+
 namespace Rogue.Weapon
 {
     /// <summary>
@@ -16,7 +18,7 @@ namespace Rogue.Weapon
         public virtual int Damage(IWeapon.Use use) => this._weapon.Damage(use);
 
         /// <inheritdoc cref="IItem"/>
-        public bool Use(Player player) => this._weapon.Use(player);
+        public bool Use(IPlayer player) => this._weapon.Use(player);
 
         /// <inheritdoc cref="Equals(Rogue.Weapon.WeaponDecorator)"/>
         private bool Equals(WeaponDecorator other)

@@ -1,4 +1,5 @@
 using System;
+using Rogue.Creature;
 
 namespace Rogue.Armor
 {
@@ -32,7 +33,7 @@ namespace Rogue.Armor
         public void IncreaseAC(int amount) => this.UpdateAc(amount);
 
         /// <inheritdoc cref="IItem"/>
-        public bool Use(Player player)
+        public bool Use(IPlayer player)
         {
             throw new System.NotImplementedException();
         }

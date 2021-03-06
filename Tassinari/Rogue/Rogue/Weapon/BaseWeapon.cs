@@ -1,3 +1,5 @@
+using Rogue.Creature;
+
 namespace Rogue.Weapon
 {
     /// <summary>
@@ -20,7 +22,7 @@ namespace Rogue.Weapon
         public int Accuracy() => WeaponType.Accuracy;
 
         /// <inheritdoc cref="IItem"/>
-        public bool Use(Player player)
+        public bool Use(IPlayer player)
         {
             throw new System.NotImplementedException();
         }

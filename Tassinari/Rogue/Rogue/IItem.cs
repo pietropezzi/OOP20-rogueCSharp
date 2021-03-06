@@ -1,3 +1,5 @@
+using Rogue.Creature;
+
 namespace Rogue
 {
     /// <summary>
@@ -11,7 +13,7 @@ namespace Rogue
         /// </summary>
         /// <param name="player">on which to use the item.</param>
         /// <returns>true if correctly used, false otherwise.</returns>
-        bool Use(Player player);
+        bool Use(IPlayer player);
 
     }
 }
