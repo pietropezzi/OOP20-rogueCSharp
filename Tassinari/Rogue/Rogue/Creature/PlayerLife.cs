@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Rogue.Creature
 {
@@ -38,6 +40,20 @@ namespace Rogue.Creature
         private int _coins;
         
         // add strategies ...
+
+        public IEnumerable<Tuple<PlayerAttribute, int>> Values
+        {
+            get
+            {
+                yield return Tuple.Create(PlayerAttribute.MaxHp, this._maxHealthPoints);
+                yield return Tuple.Create(PlayerAttribute.Hp, this.HealthPoints);
+                yield return Tuple.Create(PlayerAttribute.Coins, this._coins);
+                yield return Tuple.Create(PlayerAttribute.Level, this._level);
+                yield return Tuple.Create(PlayerAttribute.Strength, this._strength);
+                yield return Tuple.Create(PlayerAttribute.Experience, this.Experience);
+                yield return Tuple.Create(PlayerAttribute.Food, this._food);
+            }
+        }
 
         private void invokeAction(PlayerAttribute attribute, int value) =>
             this.PlayerLifeChanged?.Invoke(attribute, value);

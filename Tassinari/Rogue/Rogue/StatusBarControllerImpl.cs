@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Rogue.Creature;
 
 namespace Rogue
@@ -12,6 +13,10 @@ namespace Rogue
         public StatusBarControllerImpl(PlayerLife life)
         {
             life.PlayerLifeChanged += OnLifeChange;
+            foreach (var attribute in life.Values)
+            {
+                OnLifeChange(attribute.Item1, attribute.Item2);
+            }
         }
 
         private static void OnLifeChange(PlayerAttribute attribute, int value)
