@@ -1,9 +1,9 @@
-namespace Rogue.Items
+namespace Rogue.Items.Inventory
 {
     /// <summary>
-    /// An implementation for <see cref="IInventory"/>
+    /// An interface for modeling a game Inventory.
     /// </summary>
-    public class Inventory : IInventory
+    public class IInventory
     {
         // TODO: Intentionally empty: used for player development.
     }

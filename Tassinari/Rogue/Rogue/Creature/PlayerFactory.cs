@@ -1,5 +1,6 @@
 using System;
 using Rogue.Items;
+using Rogue.Items.Inventory;
 
 namespace Rogue.Creature
 {
@@ -19,8 +20,8 @@ namespace Rogue.Creature
 
             public Player(IPlayerLife life) : base(life)
             {
-                // TODO: creates equipment and inventory
-                // Intentionally empty
+                this.Equipment = new Equipment();
+                this.Inventory = new Inventory();
             }
         }
 
