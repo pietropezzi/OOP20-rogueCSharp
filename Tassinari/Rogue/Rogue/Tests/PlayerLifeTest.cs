@@ -2,10 +2,10 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rogue.Creature;
 
-namespace Rogue
+namespace Rogue.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class PlayerLifeTest
     {
 
         private IPlayer _player;
