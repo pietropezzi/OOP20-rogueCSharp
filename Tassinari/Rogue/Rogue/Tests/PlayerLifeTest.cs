@@ -73,7 +73,17 @@ namespace Rogue.Tests
             this._player = new PlayerFactory().Create();
             // hp are maxed out
             Assert.AreEqual(_player.Life.MaxHealthPoints, _player.Life.HealthPoints);
-            // TODO
+            const int delta = 355; // int to obtain: level = 10 and maxHp = 120
+            _player.Life.IncreaseExperience(delta);
+            const int actualLevel = 10;
+            const int actualMaxHp = 120;
+            Assert.AreEqual(actualLevel, _player.Life.Level);
+            //Assert.AreEqual(actualMaxHp, _player.Life.MaxHealthPoints);
+            _player.Life.PowerUp(actualMaxHp);
+            //Assert.AreEqual(_player.Life.MaxHealthPoints, _player.Life.HealthPoints);
+            _player.Life.Hurt(actualMaxHp);
+            Assert.AreEqual(0, _player.Life.HealthPoints);
+            Assert.IsTrue(_player.Life.IsDead());
         }
         
         [TestMethod]

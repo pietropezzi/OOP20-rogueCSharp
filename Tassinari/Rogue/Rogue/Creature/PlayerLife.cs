@@ -29,6 +29,8 @@ namespace Rogue.Creature
     {
         /// <inheritdoc cref="IPlayerLife"/>
         public event Action<PlayerAttribute, int> PlayerLifeChanged;
+
+        private readonly ILevelIncreaseStrategy _levelStrategy;
         
         private const int MaxFoodLevel = 100;
         private int _maxHealthPoints;
@@ -115,9 +117,10 @@ namespace Rogue.Creature
             }
         }
 
-        private PlayerLife(int experience, int healthPoints, int maxHealthPoints,
+        private PlayerLife(ILevelIncreaseStrategy levelStrategy, int experience, int healthPoints, int maxHealthPoints,
             int strength, int food, int level, int coins) : base(healthPoints, experience)
         {
+            this._levelStrategy = levelStrategy;
             this.MaxHealthPoints = maxHealthPoints;
             this.Strength = strength;
             this.Food = food;
@@ -138,6 +141,11 @@ namespace Rogue.Creature
         public void IncreaseExperience(int amount)
         {
             this.Experience += amount;
+            var newLevel = this._levelStrategy.Level(this.Experience);
+            if (newLevel != this._level)
+            {
+                this.Level = newLevel;
+            }
             this.invokeAction(PlayerAttribute.Experience, this.Experience);
         } 
 
@@ -185,7 +193,7 @@ namespace Rogue.Creature
             private const int Coins = 0;
             private const int Level = 1;
 
-            // insert strategies
+            private ILevelIncreaseStrategy _levelStrategy = new StandardLevelIncreaseStrategy();
             
             private int _maxHealthPoints = MaxHealthPoints;
             private int _healthPoints = HealthPoints;
@@ -195,6 +203,17 @@ namespace Rogue.Creature
             private int _level = Level;
             private int _coins = Coins;
             private bool _consumed;
+            
+            /// <summary>
+            /// Initialize the level increase strategy.
+            /// </summary>
+            /// <param name="levelStrategy">the <see cref="ILevelIncreaseStrategy"/> to use.</param>
+            /// <returns>this Builder for chaining</returns>
+            public Builder InitMaxHealthPoints(ILevelIncreaseStrategy levelStrategy)
+            {
+                this._levelStrategy = levelStrategy;
+                return this;
+            }
 
             /// <summary>
             /// Initialize the player maximum health points.
@@ -286,7 +305,8 @@ namespace Rogue.Creature
                 }
 
                 _consumed = true;
-                return new PlayerLife(_experience, _healthPoints, _maxHealthPoints, _strength, _food, _level, _coins);
+                return new PlayerLife(_levelStrategy, _experience, _healthPoints, 
+                    _maxHealthPoints, _strength, _food, _level, _coins);
             }
             
         }
