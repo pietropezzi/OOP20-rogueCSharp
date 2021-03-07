@@ -8,8 +8,8 @@ namespace Rogue.Creature
         /// <summary>
         /// Gets the corresponding level to the given experience.
         /// </summary>
-        /// <param name="experience">the current experience value</param>
-        /// <returns>an <see cref="int"/> describing the level</returns>
+        /// <param name="experience">the current experience value.</param>
+        /// <returns>an <see cref="int"/> describing the level.</returns>
         int Level(int experience);
     }
 }

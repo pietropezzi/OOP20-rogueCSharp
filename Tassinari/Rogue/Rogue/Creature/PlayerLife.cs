@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace Rogue.Creature
 {
@@ -31,7 +30,8 @@ namespace Rogue.Creature
         public event Action<PlayerAttribute, int> PlayerLifeChanged;
 
         private readonly ILevelIncreaseStrategy _levelStrategy;
-        
+        private readonly IMaxHpIncreaseStrategy _maxHpStrategy;
+
         private const int MaxFoodLevel = 100;
         private int _maxHealthPoints;
         private int _strength;
@@ -56,7 +56,7 @@ namespace Rogue.Creature
             }
         }
 
-        private void invokeAction(PlayerAttribute attribute, int value) =>
+        private void InvokeAction(PlayerAttribute attribute, int value) =>
             this.PlayerLifeChanged?.Invoke(attribute, value);
 
         /// <inheritdoc cref="IPlayerLife"/>
@@ -69,7 +69,7 @@ namespace Rogue.Creature
             private set
             {
                 this._maxHealthPoints = value;
-                this.invokeAction(PlayerAttribute.MaxHp, this._maxHealthPoints);
+                this.InvokeAction(PlayerAttribute.MaxHp, this._maxHealthPoints);
             }
         }
 
@@ -80,7 +80,7 @@ namespace Rogue.Creature
             private set
             {
                 this._strength = value;
-                this.invokeAction(PlayerAttribute.Strength, this._strength);
+                this.InvokeAction(PlayerAttribute.Strength, this._strength);
             }
         }
         
@@ -91,7 +91,7 @@ namespace Rogue.Creature
             private set
             {
                 this._food = value;
-                this.invokeAction(PlayerAttribute.Food, this._food);
+                this.InvokeAction(PlayerAttribute.Food, this._food);
             }
         }
 
@@ -102,7 +102,7 @@ namespace Rogue.Creature
             private set
             {
                 this._level = value;
-                this.invokeAction(PlayerAttribute.Level, this._level);
+                this.InvokeAction(PlayerAttribute.Level, this._level);
             }
         }
 
@@ -113,13 +113,15 @@ namespace Rogue.Creature
             private set
             {
                 this._coins = value;
-                this.invokeAction(PlayerAttribute.Coins, this._coins);
+                this.InvokeAction(PlayerAttribute.Coins, this._coins);
             }
         }
 
-        private PlayerLife(ILevelIncreaseStrategy levelStrategy, int experience, int healthPoints, int maxHealthPoints,
-            int strength, int food, int level, int coins) : base(healthPoints, experience)
+        private PlayerLife(ILevelIncreaseStrategy levelStrategy, IMaxHpIncreaseStrategy maxHpStrategy, int experience, 
+            int healthPoints, int maxHealthPoints, int strength, int food, int level, int coins) 
+            : base(healthPoints, experience)
         {
+            this._maxHpStrategy = maxHpStrategy;
             this._levelStrategy = levelStrategy;
             this.MaxHealthPoints = maxHealthPoints;
             this.Strength = strength;
@@ -134,7 +136,7 @@ namespace Rogue.Creature
         public override void Hurt(int damage)
         {
             base.Hurt(damage);
-            this.invokeAction(PlayerAttribute.Hp, this.HealthPoints);
+            this.InvokeAction(PlayerAttribute.Hp, this.HealthPoints);
         }
         
         /// <inheritdoc cref="IPlayerLife"/>
@@ -145,14 +147,15 @@ namespace Rogue.Creature
             if (newLevel != this._level)
             {
                 this.Level = newLevel;
+                this.MaxHealthPoints = this._maxHpStrategy.MaxHp(this._level);
             }
-            this.invokeAction(PlayerAttribute.Experience, this.Experience);
+            this.InvokeAction(PlayerAttribute.Experience, this.Experience);
         } 
 
         /// <inheritdoc cref="IPlayerLife"/>
         public void PowerUp(int amount)
         {
-            this.HealthPoints += CheckNotExceeding(this.HealthPoints + amount, MaxHealthPoints);
+            this.HealthPoints = CheckNotExceeding(this.HealthPoints + amount, MaxHealthPoints);
             this.PlayerLifeChanged?.Invoke(PlayerAttribute.Hp, this.HealthPoints);
         }
         
@@ -194,7 +197,8 @@ namespace Rogue.Creature
             private const int Level = 1;
 
             private ILevelIncreaseStrategy _levelStrategy = new StandardLevelIncreaseStrategy();
-            
+            private IMaxHpIncreaseStrategy _maxHpStrategy = new StandardMaxHpIncreaseStrategy();
+
             private int _maxHealthPoints = MaxHealthPoints;
             private int _healthPoints = HealthPoints;
             private int _food = Food;
@@ -209,9 +213,20 @@ namespace Rogue.Creature
             /// </summary>
             /// <param name="levelStrategy">the <see cref="ILevelIncreaseStrategy"/> to use.</param>
             /// <returns>this Builder for chaining</returns>
-            public Builder InitMaxHealthPoints(ILevelIncreaseStrategy levelStrategy)
+            public Builder InitLevelStrategy(ILevelIncreaseStrategy levelStrategy)
             {
                 this._levelStrategy = levelStrategy;
+                return this;
+            }
+            
+            /// <summary>
+            /// Initialize the maximum health points increase strategy.
+            /// </summary>
+            /// <param name="maxHpStrategy">the <see cref="IMaxHpIncreaseStrategy"/> to use.</param>
+            /// <returns>this Builder for chaining</returns>
+            public Builder InitMaxHpStrategy(IMaxHpIncreaseStrategy maxHpStrategy)
+            {
+                this._maxHpStrategy = maxHpStrategy;
                 return this;
             }
 
@@ -305,7 +320,7 @@ namespace Rogue.Creature
                 }
 
                 _consumed = true;
-                return new PlayerLife(_levelStrategy, _experience, _healthPoints, 
+                return new PlayerLife(_levelStrategy, _maxHpStrategy, _experience, _healthPoints, 
                     _maxHealthPoints, _strength, _food, _level, _coins);
             }
             

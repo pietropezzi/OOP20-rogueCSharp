@@ -78,9 +78,9 @@ namespace Rogue.Tests
             const int actualLevel = 10;
             const int actualMaxHp = 120;
             Assert.AreEqual(actualLevel, _player.Life.Level);
-            //Assert.AreEqual(actualMaxHp, _player.Life.MaxHealthPoints);
+            Assert.AreEqual(actualMaxHp, _player.Life.MaxHealthPoints);
             _player.Life.PowerUp(actualMaxHp);
-            //Assert.AreEqual(_player.Life.MaxHealthPoints, _player.Life.HealthPoints);
+            Assert.AreEqual(_player.Life.MaxHealthPoints, _player.Life.HealthPoints);
             _player.Life.Hurt(actualMaxHp);
             Assert.AreEqual(0, _player.Life.HealthPoints);
             Assert.IsTrue(_player.Life.IsDead());
