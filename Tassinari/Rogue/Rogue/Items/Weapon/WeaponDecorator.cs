@@ -1,6 +1,6 @@
 using Rogue.Creature;
 
-namespace Rogue.Weapon
+namespace Rogue.Items.Weapon
 {
     /// <summary>
     /// A decorator for a <see cref="BaseWeapon"/>

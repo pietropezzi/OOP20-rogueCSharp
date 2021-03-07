@@ -1,4 +1,4 @@
-namespace Rogue.Weapon
+namespace Rogue.Items.Weapon
 {
     /// <summary>
     /// An interface for modeling a game weapon.

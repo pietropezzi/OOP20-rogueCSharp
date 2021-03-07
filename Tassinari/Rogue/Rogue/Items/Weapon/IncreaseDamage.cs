@@ -1,4 +1,4 @@
-namespace Rogue.Weapon
+namespace Rogue.Items.Weapon
 {
     /// <summary>
     /// A concrete decorator to increase the weapon damage.

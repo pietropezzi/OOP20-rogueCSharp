@@ -1,7 +1,7 @@
 using System;
 using Rogue.Creature;
 
-namespace Rogue.Armor
+namespace Rogue.Items.Armor
 {
     /// <summary>
     /// Represents a simple implementation for a game <see cref="IArmor"/>.

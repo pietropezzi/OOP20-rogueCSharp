@@ -1,6 +1,6 @@
 using Rogue.Creature;
 
-namespace Rogue.Weapon
+namespace Rogue.Items.Weapon
 {
     /// <summary>
     /// A minimal implementation for a <see cref="IWeapon"/>.

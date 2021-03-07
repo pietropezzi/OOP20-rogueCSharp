@@ -1,4 +1,4 @@
-namespace Rogue.Armor
+namespace Rogue.Items.Armor
 {
     /// <summary>
     /// A class for declaring armor types.

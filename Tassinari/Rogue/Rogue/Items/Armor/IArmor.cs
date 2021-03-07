@@ -1,4 +1,4 @@
-namespace Rogue.Armor
+namespace Rogue.Items.Armor
 {
     /// <summary>
     /// An interface modeling a game armor.

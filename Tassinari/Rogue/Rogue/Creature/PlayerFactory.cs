@@ -1,4 +1,5 @@
 using System;
+using Rogue.Items;
 
 namespace Rogue.Creature
 {

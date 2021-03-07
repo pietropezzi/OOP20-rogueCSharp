@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Rogue.Weapon
+namespace Rogue.Items.Weapon
 {
     /// <summary>
     /// A class for declaring weapon types.

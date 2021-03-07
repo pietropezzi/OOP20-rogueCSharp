@@ -1,3 +1,5 @@
+using Rogue.Items;
+
 namespace Rogue.Creature
 {
     /// <summary>

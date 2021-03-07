@@ -1,6 +1,6 @@
 using Rogue.Creature;
 
-namespace Rogue
+namespace Rogue.Items
 {
     /// <summary>
     /// Interface that represents a games' Item.
