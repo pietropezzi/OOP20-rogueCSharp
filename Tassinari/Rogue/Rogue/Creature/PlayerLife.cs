@@ -24,6 +24,10 @@ namespace Rogue.Creature
         Food
     }
 
+    /// <summary>
+    /// An implementation for a <see cref="IPlayerLife"/>.
+    /// Uses the pattern builder in order to create a new instance (even custom).
+    /// </summary>
     public class PlayerLife : AbstractLife, IPlayerLife
     {
         /// <inheritdoc cref="IPlayerLife"/>
@@ -39,8 +43,6 @@ namespace Rogue.Creature
         private int _level;
         private int _coins;
         
-        // add strategies ...
-
         /// <inheritdoc cref="IPlayerLife"/>
         public IEnumerable<Tuple<PlayerAttribute, int>> Values
         {

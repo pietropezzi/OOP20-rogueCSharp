@@ -19,8 +19,8 @@ namespace Rogue.Creature
 
             public Player(IPlayerLife life) : base(life)
             {
-                this.Equipment = null;
-                this.Inventory = null;
+                // TODO: creates equipment and inventory
+                // Intentionally empty
             }
         }
 
