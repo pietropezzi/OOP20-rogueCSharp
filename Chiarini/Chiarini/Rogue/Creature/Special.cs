@@ -1,12 +1,12 @@
 ﻿ namespace Rogue.Creature
 {
 /// <summary>
- /// Class representing a game <see cref="ISpecial"/> 
- /// </summary>
-public class Special : ISpecial
-{
+/// Class representing a game <see cref="ISpecial"/> 
+/// </summary>
+    public class Special : ISpecial
+    {
     	private bool hostile;
-	    private readonly bool flying;
+	private readonly bool flying;
     	private readonly bool greedy;
     	private readonly bool flyingRandom;
     	private readonly bool poisonous;
@@ -112,5 +112,5 @@ public class Special : ISpecial
     	public void becomeHostile() {
     	    this.hostile = true;
     	}
-	}	
+    }	
 }
