@@ -1,4 +1,4 @@
-#Luca Tassinari
+# Luca Tassinari
 
 Per il task C# ho riscritto le parti che riguardano il player, gli item arma e armatura, nonché il controller per la <em>StatusBar</em>.
 
