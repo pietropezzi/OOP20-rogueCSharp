@@ -7,13 +7,14 @@ namespace Rogue.Items.Weapon
     /// </summary>
     public sealed class BaseWeapon : IWeapon
     {
-        public WeaponType Weapon { get; private set; }
-
         /// <summary>
         /// Creates a new BaseWeapon.
         /// </summary>
         /// <param name="weapon">The <see cref="WeaponType"/>.</param>
         public BaseWeapon(WeaponType weapon) => Weapon = weapon;
+        
+        /// <inheritdoc cref="IWeapon"/>
+        public WeaponType Weapon { get; }
 
         /// <inheritdoc cref="IWeapon"/>
         public int Damage(IWeapon.WeaponUse weaponUse) => this.Weapon.GetDamage(weaponUse).Invoke();
@@ -24,10 +25,11 @@ namespace Rogue.Items.Weapon
         /// <inheritdoc cref="IItem"/>
         public bool Use(IPlayer player)
         {
+            // TODO (intentionally empty): to put this weapon on equipment.
             throw new System.NotImplementedException();
         }
 
-        /// <inheritdoc cref="Equals(Rogue.Weapon.BaseWeapon)"/>
+        /// <inheritdoc cref="Equals(Rogue.Items.Weapon.BaseWeapon)"/>
         private bool Equals(BaseWeapon other)
         {
             return Equals(Weapon, other.Weapon);

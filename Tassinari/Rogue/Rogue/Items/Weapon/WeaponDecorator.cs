@@ -9,7 +9,14 @@ namespace Rogue.Items.Weapon
     {
         private readonly IWeapon _weapon;
         
+        /// <summary>
+        /// Creates a weapon decorator.
+        /// </summary>
+        /// <param name="weapon">the weapon to decorate.</param>
         protected WeaponDecorator(IWeapon weapon) => this._weapon = weapon;
+
+        /// <inheritdoc cref="IWeapon"/>
+        public WeaponType Weapon => this._weapon.Weapon;
 
         /// <inheritdoc cref="IWeapon"/>
         public virtual int Accuracy() => this._weapon.Accuracy();
@@ -20,7 +27,7 @@ namespace Rogue.Items.Weapon
         /// <inheritdoc cref="IItem"/>
         public bool Use(IPlayer player) => this._weapon.Use(player);
 
-        /// <inheritdoc cref="Equals(Rogue.Weapon.WeaponDecorator)"/>
+        /// <inheritdoc cref="Equals(Rogue.Items.Weapon.WeaponDecorator)"/>
         private bool Equals(WeaponDecorator other)
         {
             return Equals(_weapon, other._weapon);

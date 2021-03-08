@@ -6,9 +6,14 @@ namespace Rogue.Items.Weapon
     public interface IWeapon : IItem
     {
         /// <summary>
+        /// Gets the type of the weapon.
+        /// </summary>
+        public WeaponType Weapon { get; }
+        
+        /// <summary>
         /// Represents an enumeration for declaring weapon use.
         /// </summary>
-        enum WeaponUse {HANDLED, THROWN}
+        enum WeaponUse {Handled, Thrown}
 
         /// <summary>
         /// Gets the weapon damage.

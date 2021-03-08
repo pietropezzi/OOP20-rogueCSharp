@@ -18,9 +18,9 @@ namespace Rogue.Items.Weapon
 
         private const int WeaponAccuracy = 0;
 
-        private readonly Dictionary<IWeapon.WeaponUse, Tuple<int, int>> damages =
+        private readonly Dictionary<IWeapon.WeaponUse, Tuple<int, int>> _damages =
             new Dictionary<IWeapon.WeaponUse, Tuple<int, int>>();
-        private readonly Random rnd = new Random();
+        private readonly Random _rnd = new Random();
         
         /// <summary>
         /// Gets the weapon name.
@@ -35,8 +35,8 @@ namespace Rogue.Items.Weapon
         private WeaponType(Tuple<int, int> handledDamage, Tuple<int, int> thrownDamage, string name)
         {
             this.Name = name;
-            this.damages.Add(IWeapon.WeaponUse.THROWN, thrownDamage);
-            this.damages.Add(IWeapon.WeaponUse.HANDLED, handledDamage);
+            this._damages.Add(IWeapon.WeaponUse.Thrown, thrownDamage);
+            this._damages.Add(IWeapon.WeaponUse.Handled, handledDamage);
         }
 
         /// <summary>
@@ -47,8 +47,8 @@ namespace Rogue.Items.Weapon
         public Func<int> GetDamage(IWeapon.WeaponUse weaponUse)
         {
             return () => Enumerable.Sum(Enumerable
-                .Range(0, damages[weaponUse].Item1)
-                .Select(i => rnd.Next(damages[weaponUse].Item2) + 1));
+                .Range(0, _damages[weaponUse].Item1)
+                .Select(i => _rnd.Next(_damages[weaponUse].Item2) + 1));
         }
 
     }

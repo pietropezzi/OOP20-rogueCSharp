@@ -6,6 +6,16 @@ namespace Rogue.Items.Armor
     public interface IArmor : IItem
     {
         /// <summary>
+        /// Gets the <see cref="ArmorType"/>.
+        /// </summary>
+        ArmorType ArmorType { get; }
+        
+        /// <summary>
+        /// Gets the armor AC.
+        /// </summary>
+        int Ac { get; }
+        
+        /// <summary>
         /// Increases the armor's AC of the given value.
         /// </summary>
         /// <param name="amount">the value to add to the armor's AC.</param>

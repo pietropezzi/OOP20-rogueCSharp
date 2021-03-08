@@ -8,16 +8,6 @@ namespace Rogue.Items.Armor
     public class Armor : IArmor
     {
         /// <summary>
-        /// Gets the <see cref="ArmorType"/>.
-        /// </summary>
-        public ArmorType ArmorType { get; }
-        
-        /// <summary>
-        /// Gets the armor AC.
-        /// </summary>
-        public int Ac { get; private set; }
-
-        /// <summary>
         /// Creates a new Armor.
         /// </summary>
         /// <param name="armor">the <see cref="ArmorType"/>.</param>
@@ -26,6 +16,12 @@ namespace Rogue.Items.Armor
             this.ArmorType = armor;
             this.Ac = armor.Ac;
         }
+        
+        /// <inheritdoc cref="IArmor"/>
+        public ArmorType ArmorType { get; }
+        
+        /// <inheritdoc cref="IArmor"/>
+        public int Ac { get; private set; }
 
         private void UpdateAc(int amount) => this.Ac = this.Ac + amount > 0 ? this.Ac + amount : 0;
 
@@ -38,6 +34,7 @@ namespace Rogue.Items.Armor
         /// <inheritdoc cref="IItem"/>
         public bool Use(IPlayer player)
         {
+            // TODO (intentionally empty): to put this armor on equipment.
             throw new System.NotImplementedException();
         }
 
