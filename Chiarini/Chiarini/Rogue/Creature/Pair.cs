@@ -6,26 +6,26 @@
 	/// </summary>
 	public class Pair<TFirst, Tsecond> { 
 
-   		private TFirst first;
-   		private Tsecond second;
+   	    private TFirst first;
+   	    private Tsecond second;
 
-	  	 /// <summary>
-	   	/// The class constructor.
+	    /// <summary>
+	    /// The class constructor.
 	    /// </summary>
- 	   /// <param name="first">the first value</param>
+ 	    /// <param name="first">the first value</param>
 	    /// <param name="second">the second value</param>
 	    public Pair(TFirst first, Tsecond second)
 	    {
- 	       this.first = first;
- 	       this.second = second;
- 	   }
+ 	        this.first = first;
+ 	        this.second = second;
+ 	    }
 
  	   /// <summary>
  	   /// return the first value.
  	   /// </summary>
  	   /// <returns>the first value.</returns>
  	   public TFirst GetFirst() {
-        return this.first;
+               return this.first;
   	   }
 
 	    /// <summary>
