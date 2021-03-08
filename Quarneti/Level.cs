@@ -9,15 +9,15 @@ namespace Quarneti
   /// </summary>
   class Level
   {
-    private int WIDTH { get; } = 32;
-    private int HEIGHT { get; } = 32;
+    public int WIDTH { get; } = 32;
+    public int HEIGHT { get; } = 32;
     //private static int FOOD_DECREASE_ON_COMBAT = 2;
 
     private static Random RANDOM = new Random();
     //private static Combat combat = new CombatImpl();
     public Tile[,] tileMap { get; }
     private Entity player;
-    private Dictionary<Entity, Tile> entityMap = new Dictionary<Entity, Tile>();
+    public Dictionary<Entity, Tile> entityMap { get; } = new Dictionary<Entity, Tile>();
 
     // freeTiles cache
     private List<Tile> freeTiles = new List<Tile>();
