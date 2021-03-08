@@ -1,4 +1,3 @@
-using System;
 using Rogue.Creature;
 
 namespace Rogue

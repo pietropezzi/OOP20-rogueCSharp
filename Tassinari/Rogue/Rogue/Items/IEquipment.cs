@@ -1,4 +1,4 @@
-namespace Rogue
+namespace Rogue.Items
 {
     /// <summary>
     /// An interface modeling an equipment.

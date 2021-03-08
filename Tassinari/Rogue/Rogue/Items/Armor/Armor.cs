@@ -26,10 +26,10 @@ namespace Rogue.Items.Armor
         private void UpdateAc(int amount) => this.Ac = this.Ac + amount > 0 ? this.Ac + amount : 0;
 
         /// <inheritdoc cref="IArmor"/>
-        public void DecreaseAC(int amount) => this.UpdateAc(-amount);
+        public void DecreaseAc(int amount) => this.UpdateAc(-amount);
 
         /// <inheritdoc cref="IArmor"/>
-        public void IncreaseAC(int amount) => this.UpdateAc(amount);
+        public void IncreaseAc(int amount) => this.UpdateAc(amount);
 
         /// <inheritdoc cref="IItem"/>
         public bool Use(IPlayer player)

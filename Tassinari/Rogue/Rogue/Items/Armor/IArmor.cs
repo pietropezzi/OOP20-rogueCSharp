@@ -19,13 +19,13 @@ namespace Rogue.Items.Armor
         /// Increases the armor's AC of the given value.
         /// </summary>
         /// <param name="amount">the value to add to the armor's AC.</param>
-        void IncreaseAC(int amount);
+        void IncreaseAc(int amount);
         
         /// <summary>
         /// Decreases the armor's AC of the given value.
         /// </summary>
         /// <param name="amount">the value to subtract to the armor's AC.</param>
-        void DecreaseAC(int amount);
+        void DecreaseAc(int amount);
 
     }
 }

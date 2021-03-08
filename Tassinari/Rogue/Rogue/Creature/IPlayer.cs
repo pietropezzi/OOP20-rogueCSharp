@@ -1,3 +1,4 @@
+using Rogue.Items;
 using Rogue.Items.Inventory;
 
 namespace Rogue.Creature
