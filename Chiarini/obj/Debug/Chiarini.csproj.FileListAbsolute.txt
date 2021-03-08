@@ -1,0 +1,5 @@
+C:\Users\Fabio\Documents\SharpDevelop Projects\Chiarini\bin\Debug\Chiarini.exe
+C:\Users\Fabio\Documents\SharpDevelop Projects\Chiarini\bin\Debug\Chiarini.pdb
+C:\Users\Fabio\Documents\SharpDevelop Projects\Chiarini\obj\Debug\Chiarini.csprojResolveAssemblyReference.cache
+C:\Users\Fabio\Documents\SharpDevelop Projects\Chiarini\obj\Debug\Chiarini.exe
+C:\Users\Fabio\Documents\SharpDevelop Projects\Chiarini\obj\Debug\Chiarini.pdb
