@@ -6,7 +6,7 @@
 	/// </summary>
 	public interface ISpecial {
 
-		/// <summary>
+        /// <summary>
     	/// return true if the monster is hostile.
     	/// </summary>
     	/// <returns>the monster is hostile.</returns>
@@ -25,26 +25,26 @@
     	bool isGreedy();
 	
     	/// <summary>
-	    /// return true if the monster flies randomly.
-	    /// </summary>
-	    /// <returns>the monster flies randomly.</returns>
-	    bool isFlyingRandom();
+	/// return true if the monster flies randomly.
+	/// </summary>
+	/// <returns>the monster flies randomly.</returns>
+	bool isFlyingRandom();
 
-	    /// <summary>
-	    /// return true if the monster can poison the player.
-	    /// </summary>
-	    /// <returns>the monster can poison the player.</returns>
-	    bool isPoisonous();
+	/// <summary>
+	/// return true if the monster can poison the player.
+	/// </summary>
+	/// <returns>the monster can poison the player.</returns>
+	bool isPoisonous();
     
-	    /// <summary>
-	    /// return true if the monster can steal life from the player.
-	    /// </summary>
-	    /// <returns>the monster can steal life from the player.</returns>
-	    bool isDrainLife();
+	/// <summary>
+	/// return true if the monster can steal life from the player.
+	/// </summary>
+	/// <returns>the monster can steal life from the player.</returns>
+	bool isDrainLife();
     
-	    /// <summary>
-	    /// the monster become hostile.
-	    /// </summary>
-	    void becomeHostile();
-	}
+	/// <summary>
+	/// the monster become hostile.
+	/// </summary>
+	void becomeHostile();
+    }
 }
