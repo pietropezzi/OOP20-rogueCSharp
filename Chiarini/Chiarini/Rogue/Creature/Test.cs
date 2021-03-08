@@ -118,8 +118,7 @@ namespace Rogue.Creature
 			Console.WriteLine("HP " + centaur.getMonsterLife().getHealthPoints());
 			Console.WriteLine("EXP " + centaur.getMonsterLife().getExperience() + "\n");
 
-			// TODO: Implement Functionality Here
-
+			
 			Console.Write("Press any key to continue . . . ");
 			Console.ReadKey(true);
 		}
