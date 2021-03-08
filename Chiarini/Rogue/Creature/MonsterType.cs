@@ -19,7 +19,7 @@
   	  /// <summary>
 	  /// Centaur
   	  /// </summary>
-      CENTAUR
+          CENTAUR
 	}
 }
 
