@@ -1,9 +1,9 @@
-namespace Quarneti
+namespace World
 {
   /// <summary>
   /// the default tile implementation.
   /// </summary>
-  class Tile
+  public class Tile
   {
     public int x { get; }
     public int y { get; }

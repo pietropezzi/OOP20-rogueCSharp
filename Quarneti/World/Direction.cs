@@ -1,4 +1,4 @@
-namespace Quarneti
+namespace World
 {
   /// <summary>
   /// Just the cardinal direction.

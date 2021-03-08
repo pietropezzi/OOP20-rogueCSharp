@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Quarneti
+namespace World
 {
   /// <summary>
   /// Generates a cave.

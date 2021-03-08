@@ -2,22 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Quarneti
+namespace World
 {
   /// <summary>
   /// the default level implementation.
   /// </summary>
   class Level
   {
-    public int WIDTH { get; } = 32;
-    public int HEIGHT { get; } = 32;
+    public static int WIDTH { get; } = 32;
+    public static int HEIGHT { get; } = 32;
     //private static int FOOD_DECREASE_ON_COMBAT = 2;
 
     private static Random RANDOM = new Random();
     //private static Combat combat = new CombatImpl();
-    public Tile[,] tileMap { get; }
-    private Entity player;
-    public Dictionary<Entity, Tile> entityMap { get; } = new Dictionary<Entity, Tile>();
+    public Tile[,] tileMap { get; } = new Tile[WIDTH, HEIGHT];
+    private IEntity player;
+    public Dictionary<IEntity, Tile> entityMap { get; } = new Dictionary<IEntity, Tile>();
 
     // freeTiles cache
     private List<Tile> freeTiles = new List<Tile>();
@@ -31,7 +31,7 @@ namespace Quarneti
 
     /// <summary>remove the entity and update the free tiles list.</summary>
     /// <param name="e">the entity to be removed</param>
-    private void removeEntity(Entity e)
+    private void removeEntity(IEntity e)
     {
       this.freeTiles.Add(entityMap[e]);
       this.entityMap.Remove(e);
@@ -39,7 +39,7 @@ namespace Quarneti
 
     /// <param name="e">the entity to be placed</param>
     /// <param name="t">the tile for the entity to be placed in</param>
-    private void placeEntity(Entity e, Tile t)
+    private void placeEntity(IEntity e, Tile t)
     {
       if (this.entityMap.ContainsKey(e))
       {
@@ -54,7 +54,7 @@ namespace Quarneti
     /// <param name="e">the entity</param>
     /// <param name="d">the direction used to determine the tile</param>
     /// <returns>the tile next to e</returns>
-    private Tile getRelativeTile(Entity e, Direction d)
+    private Tile getRelativeTile(IEntity e, Direction d)
     {
       Tile currentTile = entityMap[e];
       if (currentTile == null)
@@ -85,9 +85,9 @@ namespace Quarneti
 
     /// <summary>place an entity in a random tile</summary>
     /// <param name="e">the entity to be spawned</param>
-    public void spawn(Entity e) => placeEntity(e, RandomFreeTile);
+    public void spawn(IEntity e) => placeEntity(e, RandomFreeTile);
 
-    public void spawn(Entity[] l) => l.ToList().ForEach(spawn);
+    public void spawn(IEntity[] l) => l.ToList().ForEach(spawn);
 
     /// <summary>generate the level map using CaveGenerator</summer>
     private void generate()
@@ -120,7 +120,7 @@ namespace Quarneti
 
     /// <param name="e">the entity</param>
     /// <returns>the best direction to reach the player<returns>
-    private Direction nearestDirectionToPlayer(Entity e)
+    private Direction nearestDirectionToPlayer(IEntity e)
     {
       Tile playerTile = this.entityMap[this.player];
       Tile entityTile = this.entityMap[e];
@@ -148,7 +148,7 @@ namespace Quarneti
     /// <summary>Create a new level.</summary>
     /// <param name="list">the entity list (player included)</param>
     /// <param name="player">the player instance<param>
-    public Level(Entity[] list, Entity player)
+    public Level(IEntity[] list, IEntity player)
     {
       this.player = player;
       this.generate();

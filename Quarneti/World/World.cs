@@ -1,21 +1,20 @@
-using System;
 using System.Collections.Generic;
 
-namespace Quarneti
+namespace World
 {
   /// <summary>the default world implemetation.</summary>
-  class World
+  public class World
   {
     //private static final MonsterFactory MONSTER_FACTORY = new MonsterFactoryImpl();
     //private static final ItemFactory ITEM_FACTORY = new ItemFactoryImpl();
 
     private Level currentLevel;
-    private Entity player;
+    public IEntity player { get; }
 
     /// <summary>change to the next level</summary>
     private void nextLevel()
     {
-      List<Entity> entityList = new List<Entity>();
+      List<IEntity> entityList = new List<IEntity>();
       entityList.Add(player);
       //entityList.addAll(MONSTER_FACTORY.createMonsterList(player.getLife().getLevel()));
       //entityList.addAll(ITEM_FACTORY.getItems());
@@ -24,7 +23,7 @@ namespace Quarneti
     }
 
     public Tile[,] TileMap => this.currentLevel.tileMap;
-    public Dictionary<Entity, Tile> EntityMap => this.currentLevel.entityMap;
+    public Dictionary<IEntity, Tile> EntityMap => this.currentLevel.entityMap;
 
     public bool round(Direction d)
     {
@@ -41,12 +40,11 @@ namespace Quarneti
       return nextlvl;
     }
 
-    public int Width => this.currentLevel.WIDTH;
-    public int Height => this.currentLevel.HEIGHT;
-    public Entity Player => this.player;
+    public int Width => Level.WIDTH;
+    public int Height => Level.HEIGHT;
 
     /// <param name="player">the player instance</param>
-    public World(Entity player)
+    public World(IEntity player)
     {
       this.player = player;
       nextLevel();

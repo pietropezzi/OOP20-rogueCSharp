@@ -1,7 +1,0 @@
-namespace Quarneti
-{
-  interface Entity
-  {
-
-  }
-}
