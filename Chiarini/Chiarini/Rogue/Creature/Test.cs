@@ -137,8 +137,8 @@ namespace Rogue.Creature
         private static readonly int AIR_ELEMENTAL_EXPERIENCE = 20;
         private static readonly int AIR_ELEMENTAL_MONEY = 0;
         private static readonly int AIR_ELEMENTAL_ITEM_CHANGE = 20;
-   	    private static readonly int AIR_ELEMENTAL_HP_MIN = 4;
-   		private static readonly int AIR_ELEMENTAL_HP_MAX = 32;
+   	private static readonly int AIR_ELEMENTAL_HP_MIN = 4;
+        private static readonly int AIR_ELEMENTAL_HP_MAX = 32;
         private static readonly int AIR_ELEMENTAL_DAMAGE_MIN = 4;
         private static readonly int AIR_ELEMENTAL_DAMAGE_MAX = 24;
         private static readonly int AIR_ELEMENTAL_AC = 2;
@@ -184,14 +184,14 @@ namespace Rogue.Creature
 	        assertTrue(mon.getMonsterLife().isDead());
         }
 		
-		[TestMethod]
+	[TestMethod]
     	public void testBat() {
         
        	    Monster mon = new Monster(MonsterType.BAT);
 
             assertEquals(BAT_EXPERIENCE, mon.getMonsterLife().getExperience());
-	        assertEquals(BAT_MONEY, mon.getMoney());
-	        assertEquals(BAT_ITEM_CHANGE, mon.getItemChange());
+	    assertEquals(BAT_MONEY, mon.getMoney());
+	    assertEquals(BAT_ITEM_CHANGE, mon.getItemChange());
     	    assertTrue(BAT_HP_MIN <= mon.getMonsterLife().getHealthPoints() && mon.getMonsterLife().getHealthPoints() <= BAT_HP_MAX);
     	    assertTrue(BAT_DAMAGE_MIN <= mon.attackDamage() && mon.attackDamage() <= BAT_DAMAGE_MAX);
     	    assertEquals(BAT_AC, mon.getAC());
@@ -207,7 +207,7 @@ namespace Rogue.Creature
     	    assertTrue(mon.getMonsterLife().isDead());
     	}
 		 
-		[TestMethod]
+	[TestMethod]
     	public void testCentaur() {
 	       
     	    Monster mon = new Monster(MonsterType.CENTAUR);
