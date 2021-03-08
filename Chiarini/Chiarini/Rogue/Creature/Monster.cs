@@ -4,50 +4,50 @@ namespace Rogue.Creature
 	 /// <summary>
 	 /// Class representing a game <see cref="IMonster"/> 
 	 /// </summary> 
-	public class Monster : IMonster
-	{
+    public class Monster : IMonster
+    {
        
 
-	  	private readonly MonsterType name;
+	    private readonly MonsterType name;
 	    private readonly MonsterLife life;
 	    private readonly int AC;
-    	private readonly int money;
-    	private readonly int itemChange;
-    	// private readonly Potion item;
-    	private readonly Special special;
-    	private readonly Pair<int, int> damage;
+    	    private readonly int money;
+    	    private readonly int itemChange;
+    	    // private readonly Potion item;
+    	    private readonly Special special;
+    	    private readonly Pair<int, int> damage;
 
 
-    	public Monster(MonsterType name)
-    	{
-    	    this.name = name;
+    	    public Monster(MonsterType name)
+    	    {
+    	        this.name = name;
     		Random rnd = new Random();
-    		if(this.name.Equals(MonsterType.AIR_ELEMENTAL)) {
-    		   this.life = new MonsterLife(rnd.Next(4, 33-4), 20);
-    	       this.AC = 2;
-    	       this.money = 0;
-    	       this.itemChange = 20;
-    	       this.special = new Special(true, true, false, false, false, false);
-    	       this.damage = new Pair<int, int>(4, 24);
-    	    }
+    		    if(this.name.Equals(MonsterType.AIR_ELEMENTAL)) {
+    		        this.life = new MonsterLife(rnd.Next(4, 33-4), 20);
+    	                this.AC = 2;
+    	                this.money = 0;
+    	                this.itemChange = 20;
+    	                this.special = new Special(true, true, false, false, false, false);
+    	                this.damage = new Pair<int, int>(4, 24);
+    	             }
     	
-    		else if(this.name.Equals(MonsterType.BAT)) {
-    		   this.life = new MonsterLife(rnd.Next(1, 8-1), 1);
-    	       this.AC = 3;
-    	       this.money = 0;
-    	       this.itemChange = 0;
-    	       this.special = new Special(false, true, false, true, false, false);
-    	       this.damage = new Pair<int, int>(1, 2);
-    	    }
+    		   else if(this.name.Equals(MonsterType.BAT)) {
+    		       this.life = new MonsterLife(rnd.Next(1, 8-1), 1);
+    	               this.AC = 3;
+    	               this.money = 0;
+    	               this.itemChange = 0;
+    	               this.special = new Special(false, true, false, true, false, false);
+    	               this.damage = new Pair<int, int>(1, 2);
+    	           }
     	
-    	   else if(this.name.Equals(MonsterType.CENTAUR)) {
-    		   this.life = new MonsterLife(rnd.Next(4, 32-4), 17);
-    	       this.AC = 4;
-    	       this.money = 51;
-    	       this.itemChange = 10;
-    	       this.special = new Special();
-    	       this.damage = new Pair<int, int>(4, 24);
-    	    }
+    	           else if(this.name.Equals(MonsterType.CENTAUR)) {
+    		       this.life = new MonsterLife(rnd.Next(4, 32-4), 17);
+    	               this.AC = 4;
+    	               this.money = 51;
+    	               this.itemChange = 10;
+    	               this.special = new Special();
+    	               this.damage = new Pair<int, int>(4, 24);
+    	            }
     	}
     
     	/// <summary>
@@ -128,5 +128,5 @@ namespace Rogue.Creature
     		Random rnd = new Random();
     		return rnd.Next(100);
     	}   
-	}
+    }
 }
