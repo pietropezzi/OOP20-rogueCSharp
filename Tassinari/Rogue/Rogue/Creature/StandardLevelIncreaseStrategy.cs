@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization.Formatters;
 
 namespace Rogue.Creature
 {
@@ -21,8 +19,6 @@ namespace Rogue.Creature
             L13 = 1050, L14 = 1475, L15 = 2125, L16 = 3000,
             L17 = 4250, L18 = 6000, L19 = 8500, L20 = 12_000
         }
-        
-        private readonly List<Tuple<int, int>> values;
         
         /// <inheritdoc cref="ILevelIncreaseStrategy"/>
         public int Level(int experience)
