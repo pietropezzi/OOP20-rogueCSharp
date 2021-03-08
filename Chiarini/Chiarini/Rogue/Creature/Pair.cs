@@ -34,14 +34,14 @@
 	    /// <returns>the second value.</returns>
  	    public Tsecond GetSecond() {
        		return this.second;
-    	}
+    	    }
 
- 	   /// <summary>
- 	   /// return i to string of the pair.
+ 	    /// <summary>
+ 	    /// return i to string of the pair.
 	    /// </summary>
 	    /// <returns>the string</returns>
- 	   public override string ToString() {
- 	       return "<" + first + "," + second + ">";
-  	   }
-	}
+ 	    public override string ToString() {
+ 	        return "<" + first + "," + second + ">";
+  	    }
+    }
 }
