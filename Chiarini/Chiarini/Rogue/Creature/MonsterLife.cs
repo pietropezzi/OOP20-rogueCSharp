@@ -6,8 +6,8 @@
     	private int experience;
 
 	    public MonsterLife(int healthPoints, int experience) {
-    	    this.healthPoints = healthPoints;
-    	    this.experience = experience;
+    	        this.healthPoints = healthPoints;
+    	        this.experience = experience;
     	}
 
 
@@ -21,34 +21,33 @@
    		}
 
     	public int getHealthPoints() {
-        	return this.healthPoints;
+             return this.healthPoints;
     	}
 
 
     	protected void setHealthPoints(int healthPoints) {
-        	this.healthPoints = healthPoints;
-   		}
+              this.healthPoints = healthPoints;
+   	}
 
 
     	public int getExperience() {
-        	return this.experience;
+              return this.experience;
     	}
 
 
     	protected void setExperience(int experience) {
-        	this.experience = experience;
+              this.experience = experience;
     	}
 
 
     	public bool isDead() {
-        	return this.healthPoints == 0;
+             return this.healthPoints == 0;
     	}
 
     	public string toString() {
-        	return "AbstractLife [healthPoints=" + healthPoints + ", experience=" + experience + "]";
+              return "AbstractLife [healthPoints=" + healthPoints + ", experience=" + experience + "]";
+        }
     }
-
-}
 }
 	
 
