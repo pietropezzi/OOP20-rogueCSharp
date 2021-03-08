@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Rogue.Creature;
 
 namespace Rogue
@@ -12,7 +11,7 @@ namespace Rogue
         /// <summary>
         /// Creates a new StatusBarControllerImpl
         /// </summary>
-        /// <param name="life">the player life.</param>
+        /// <param name="player">the player life.</param>
         public StatusBarController(IPlayer player)
         {
             player.Life.PlayerLifeChanged += OnLifeChange;

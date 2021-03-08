@@ -1,4 +1,3 @@
-using System;
 using Rogue.Creature;
 
 namespace Rogue.Items.Armor
@@ -11,13 +10,17 @@ namespace Rogue.Items.Armor
         /// <summary>
         /// Gets the <see cref="ArmorType"/>.
         /// </summary>
-        public ArmorType ArmorType { get; private set; }
+        public ArmorType ArmorType { get; }
         
         /// <summary>
         /// Gets the armor AC.
         /// </summary>
         public int Ac { get; private set; }
 
+        /// <summary>
+        /// Creates a new Armor.
+        /// </summary>
+        /// <param name="armor">the <see cref="ArmorType"/>.</param>
         public Armor(ArmorType armor)
         {
             this.ArmorType = armor;
@@ -37,11 +40,11 @@ namespace Rogue.Items.Armor
         {
             throw new System.NotImplementedException();
         }
-        
-        /// <inheritdoc cref="Equals(Rogue.Armor.ArmorImpl)"/>
+
+        /// <inheritdoc cref="Equals(Rogue.Items.Armor.Armor)"/>
         private bool Equals(Armor other)
         {
-            return Equals(ArmorType, other.ArmorType) && Ac == other.Ac;
+            return Equals(ArmorType, other.ArmorType);
         }
 
         /// <inheritdoc cref="object.Equals(object?)"/>
@@ -52,11 +55,11 @@ namespace Rogue.Items.Armor
             if (obj.GetType() != this.GetType()) return false;
             return Equals((Armor) obj);
         }
-        
+
         /// <inheritdoc cref="object.GetHashCode"/>
         public override int GetHashCode()
         {
-            return HashCode.Combine(ArmorType, Ac);
+            return (ArmorType != null ? ArmorType.GetHashCode() : 0);
         }
 
         /// <inheritdoc cref="ToString"/>

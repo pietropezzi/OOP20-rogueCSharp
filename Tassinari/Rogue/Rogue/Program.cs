@@ -4,7 +4,7 @@ using Rogue.Creature;
 namespace Rogue
 {
     /// <summary>
-    /// The main point of application.
+    /// The application entry point.
     /// </summary>
     public class Program
     {
